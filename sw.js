@@ -49,7 +49,7 @@ self.addEventListener('fetch', function (event) {
   //   });
   // }));
 
-    event.respondWith(caches.open(cacheName).then((cache) => {
+    event.respondWith(caches.open(CACHE_NAME).then((cache) => {
       // Respond with the image from the cache or from the network
       return cache.match(event.request).then((cachedResponse) => {
         return cachedResponse || fetch(event.request.url).then((fetchedResponse) => {
@@ -62,5 +62,6 @@ self.addEventListener('fetch', function (event) {
           return fetchedResponse;
         });
 
-
+      });
+    }))
 });
